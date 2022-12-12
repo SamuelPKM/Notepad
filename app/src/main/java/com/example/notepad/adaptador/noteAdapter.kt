@@ -1,5 +1,6 @@
 package com.example.notepad.adaptador
 
+import android.content.DialogInterface.OnClickListener
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,7 +8,7 @@ import com.example.notepad.R
 import com.example.notepad.noteStruc
 
 
-class noteAdapter(private val misNotas:List<noteStruc>) : RecyclerView.Adapter<noteViewHolder>(){
+class noteAdapter(private val misNotas:List<noteStruc>, private val onClickListener: (noteStruc) -> Unit) : RecyclerView.Adapter<noteViewHolder>(){
     //Regresa el tamano de la lista
     override fun getItemCount(): Int =  misNotas.size
     //Pinta los atributos en la pantalla
@@ -17,6 +18,6 @@ class noteAdapter(private val misNotas:List<noteStruc>) : RecyclerView.Adapter<n
     }
     override fun onBindViewHolder(holder: noteViewHolder, position: Int){
         val item = misNotas[position]
-        holder.render(item)
+        holder.render(item,onClickListener)
     }
 }
